@@ -20,7 +20,7 @@ public class CreateHuman {
             System.out.println(city.getId() + ") " + city.getName() + " (" + city.getCountry() + ").");
         }
         Integer chosenId = Integer.parseInt(scanner.nextLine());
-        City chosenCity = citiesList.get(chosenId);
+        City chosenCity = citiesList.get(chosenId - 1);
 
         System.out.print("Введите имя: ");
         String name = scanner.nextLine();
