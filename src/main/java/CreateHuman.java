@@ -40,9 +40,9 @@ public class CreateHuman {
                 System.out.println(city.getId() + ") " + city.getName() + " (" + city.getCountry() + ").");
             }
             String isIdNull = scanner.nextLine();
-            Long cityId = 0L;
+            Long cityId;
             City chosenCity;
-            if(isIdNull == null){
+            if(isIdNull.equals("")){
                 chosenCity = foundHuman.getCity();
             } else {
                 cityId = Long.parseLong(isIdNull);
@@ -50,15 +50,15 @@ public class CreateHuman {
             }
 
             System.out.print("Введите новое имя: ");
-            String name = searchName;
-            if(name == null){
+            String name = scanner.nextLine();
+            if(name.equals("")){
                 name = foundHuman.getName();
             }
 
             System.out.print("Введите новый возраст: ");
             String age = scanner.nextLine();
             Integer updateAge;
-            if(age == null){
+            if(age.equals("")){
                 updateAge = foundHuman.getAge();
             } else {
                 updateAge = Integer.parseInt(age);
@@ -66,7 +66,7 @@ public class CreateHuman {
 
             System.out.print("Введите адрес: ");
             String address = scanner.nextLine();
-            if(address == null){
+            if(address.equals("")){
                 address = foundHuman.getAddress();
             }
             try{
