@@ -71,14 +71,10 @@ public class CreateHuman {
             }
             try{
                 manager.getTransaction().begin();
-                Query updateHuman = manager.createQuery("update Human h set h.name = ?1, h.age = ?2, h.address = ?3, h.city = ?4" +
-                        "where h.id = ?5");
-                updateHuman.setParameter(1, name);
-                updateHuman.setParameter(2, updateAge);
-                updateHuman.setParameter(3, address);
-                updateHuman.setParameter(4, chosenCity);
-                updateHuman.setParameter(5, foundHuman.getId());
-                updateHuman.executeUpdate();
+                foundHuman.setCity(chosenCity);
+                foundHuman.setName(name);
+                foundHuman.setAge(updateAge);
+                foundHuman.setAddress(address);
                 manager.getTransaction().commit();
             } catch (RuntimeException e){
                 System.out.println(e.getMessage());
