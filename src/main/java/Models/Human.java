@@ -21,4 +21,8 @@ public class Human {
     @JoinColumn(name = "city_id")
     private City city;
 
+    @Override
+    public String toString() {
+        return String.format("Имя: %s, возраст: %d, адрес: %s", name, age, address);
+    }
 }

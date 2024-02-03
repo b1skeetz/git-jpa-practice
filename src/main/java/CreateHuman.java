@@ -1,8 +1,5 @@
 import Models.*;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 
 import java.util.List;
 import java.util.Scanner;
@@ -12,6 +9,19 @@ public class CreateHuman {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("main");
         EntityManager manager = factory.createEntityManager();
         Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Введите имя человека: ");
+        String searchName = scanner.nextLine();
+        try {
+            TypedQuery<Human> searchForHuman = manager.createQuery("select h from Human h where h.name = ?1", Human.class);
+            searchForHuman.setParameter(1, searchName);
+            Human foundHuman = searchForHuman.getSingleResult();
+            System.out.println(foundHuman);
+            return;
+        } catch (NoResultException e){
+            System.out.println("");
+        }
+
 
         System.out.println("Выберите город: ");
         TypedQuery<City> selectAllCities = manager.createQuery("select c from City c", City.class);
@@ -37,11 +47,11 @@ public class CreateHuman {
         human.setAddress(address);
         human.setCity(chosenCity);
 
-        try{
+        try {
             manager.getTransaction().begin();
             manager.persist(human);
             manager.getTransaction().commit();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             manager.getTransaction().rollback();
             throw new RuntimeException();
