@@ -19,7 +19,7 @@ public class CreateHuman {
             System.out.println(foundHuman);
             return;
         } catch (NoResultException e){
-            System.out.println("Создать запись нового человека? [y/n]");
+            System.out.println("Пользователь с таким именем не найден!\nСоздать запись нового человека? [y/n]");
             String answer = scanner.nextLine();
             switch (answer) {
                 case "y", "yes" -> System.out.println("Создание пользователя:");
