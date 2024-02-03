@@ -19,7 +19,20 @@ public class CreateHuman {
             System.out.println(foundHuman);
             return;
         } catch (NoResultException e){
-            System.out.println("");
+            System.out.println("Создать запись нового человека? [y/n]");
+            String answer = scanner.nextLine();
+            switch (answer) {
+                case "y", "yes" -> System.out.println("Создание пользователя:");
+                case "n", "no" -> {
+                    System.out.println("Создание отклонено");
+                    return;
+                }
+                default -> {
+                    System.out.println("Неверный ответ!");
+                    System.out.println("Создание отклонено");
+                    return;
+                }
+            }
         }
 
 
@@ -32,8 +45,8 @@ public class CreateHuman {
         Integer chosenId = Integer.parseInt(scanner.nextLine());
         City chosenCity = citiesList.get(chosenId - 1);
 
-        System.out.print("Введите имя: ");
-        String name = scanner.nextLine();
+        /*System.out.print("Введите имя: ");*/
+        String name = searchName;
 
         System.out.print("Введите возраст: ");
         Integer age = Integer.parseInt(scanner.nextLine());
